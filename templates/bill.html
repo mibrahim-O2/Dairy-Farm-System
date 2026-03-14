@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style>
+@font-face {
+    font-family: 'Noto Nastaliq Urdu';
+    src: url("file:///{{ font_path }}") format("truetype");
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:20px;
+}
+
+.container {
+    width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Header with centered logo and optional info */
+.invoice-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    height: 170px;
+    width: auto;
+}
+
+.header-info {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.3;
+}
+
+.header-tagline {
+    margin-top: 3px;
+    font-size: 13px;
+    color: #777;
+}
+
+/* Separator line */
+hr {
+    border:none;
+    border-top:1px solid #ddd;
+    margin:15px 0;
+}
+
+/* Table styles */
+table {
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th, td {
+    padding:10px;
+    border-bottom:1px solid #eee;
+    font-size:15px;
+}
+
+th {
+    text-align:center;
+    color:#1a7f37;
+}
+
+/* Total box */
+.total-box {
+    margin-top:15px;
+    background:#eaf6ea;
+    padding:10px;
+    border-left:5px solid #1a7f37;
+    border-radius:6px;
+}
+
+.total-box p {
+    margin:5px 0;
+    font-weight:bold;
+}
+
+.final-bill {
+    font-size:14px;
+    color:#1a7f37;
+}
+
+/* Urdu section */
+.urdu-section {
+    margin-top:20px;
+    padding-top:10px;
+    border-top:1px solid #ddd;
+}
+
+.urdu {
+    font-family:'Noto Nastaliq Urdu', serif;
+    direction:rtl;
+    text-align:center;
+    line-height:1.6;
+    font-size:16px;
+}
+
+/* Footer */
+.footer {
+    text-align:center;
+    margin-top:25px;
+    font-size:14px;
+    color:#777;
+}
+
+/* Print button */
+.print-btn {
+    display:block;
+    margin:15px auto;
+    padding:10px 20px;
+    background:#1a7f37;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* Print-specific adjustments to reduce pages and spacing */
+@media print {
+    body {
+        margin: 0;
+        padding: 10px;
+        line-height: 1.2;
+        font-size: 14px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    table th, table td {
+        padding: 5px 8px;
+        font-size: 14px;
+    }
+
+    .header-info, .header-tagline {
+        line-height: 1.2;
+    }
+
+    .urdu {
+        line-height: 1.1; /* tighter Urdu section spacing */
+        font-size: 15px;
+    }
+
+    .total-box p {
+        margin: 3px 0;
+    }
+
+    .invoice-header {
+        margin-bottom: 10px;
+    }
+
+    .footer {
+        font-size: 12px;
+        margin-top: 20px;
+    }
+
+    .print-btn {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Logo Centered with Professional Info -->
+<div class="invoice-header">
+    <img src="{{ url_for('static', filename='buffalo.png') }}" class="logo" alt="Bin Khalid Dairy Farm Logo">
+    
+    <!-- Farm Name with Color -->
+    <div style="font-size: 20px; font-weight: bold; color: #1a7f37; margin-top: 5px;">
+        BIN KHALID DAIRY FARM
+    </div>
+    
+    <!-- Tagline -->
+    <div class="header-tagline" style="font-size: 14px; color: #555; margin-top: 3px;">
+        Fresh Milk, Happy Customers!
+    </div>
+    
+    <!-- Contact Info -->
+    <div style="font-size: 13px; color: #777; margin-top: 3px;">
+        Contact: 0300-1234567 | Shahdadpur, Sindh
+    </div>
+</div>
+
+<button class="print-btn" onclick="window.print()">Print Voucher</button>
+
+<hr>
+
+<table>
+<tr>
+<th>Customer Name</th>
+<td>{{ data.name }}</td>
+</tr>
+
+<tr>
+<th>Date</th>
+<td>{{ data.date }}</td>
+</tr>
+
+<tr>
+<th>Total Days</th>
+<td>{{ data.days }}</td>
+</tr>
+
+<tr>
+<th>Rate per KG</th>
+<td>{{ data.rate }} PKR</td>
+</tr>
+
+<tr>
+<th>Daily Milk</th>
+<td>{{ data.daily }} KG</td>
+</tr>
+
+<tr>
+<th>Extra Milk</th>
+<td>{{ data.extra }} KG</td>
+</tr>
+
+<tr>
+<th>Milk Used</th>
+<td>{{ data.used }} KG</td>
+</tr>
+
+<tr>
+<th>Total Milk</th>
+<td>{{ data.total_milk }} KG</td>
+</tr>
+</table>
+
+<div class="total-box">
+<p>Total Amount: {{ data.amount }} PKR</p>
+<p>Previous Due: {{ data.due }} PKR</p>
+<p class="final-bill">TOTAL BILL: {{ data.final_bill }} PKR</p>
+</div>
+
+<div class="urdu-section">
+<div class="urdu">
+<p>گاہک: {{ data.name }}</p>
+<p>تاریخ: {{ data.date }}</p>
+<p>کل دن: {{ data.days }}</p>
+<p>قیمت فی کلو: {{ data.rate }} روپے</p>
+<p>روزانہ دودھ: {{ data.daily }} کلو</p>
+<p>اضافی دودھ: {{ data.extra }} کلو</p>
+<p>کم دودھ گیا: {{ data.used }} کلو</p>
+<p>کل دودھ: {{ data.total_milk }} کلو</p>
+<p>کل رقم: {{ data.amount }} روپے</p>
+<p>بقایا رقم: {{ data.due }} روپے</p>
+<p><b>کل بل: {{ data.final_bill }} روپے</b></p>
+</div>
+</div>
+
+<div class="footer">
+Thank you for choosing Bin Khalid Dairy Farm 🐃
+</div>
+
+</div>
+
+</body>
+</html>

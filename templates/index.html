@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Bin Khalid Dairy Farm</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+}
+
+.container{
+width:1000px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+color:#1a7f37;
+}
+
+.report{
+background:#eaf6ea;
+padding:15px;
+margin-bottom:20px;
+border-left:6px solid #1a7f37;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#1a7f37;
+color:white;
+}
+
+.button{
+padding:6px 10px;
+background:#1a7f37;
+color:white;
+border:none;
+border-radius:5px;
+text-decoration:none;
+cursor:pointer;
+}
+
+.edit{
+background:#2980b9;
+}
+
+.delete{
+background:#c0392b;
+}
+
+.search{
+margin-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>BIN KHALID DAIRY FARM</h1>
+
+<div class="report">
+
+<b>This Month Report</b>
+
+<br><br>
+
+Total Milk Sold : {{ milk }} KG
+
+<br>
+
+Total Income : {{ income }} PKR
+
+</div>
+
+
+<form class="search" method="GET">
+
+<input type="text" name="search" placeholder="Search Customer">
+
+<button class="button">Search</button>
+
+</form>
+
+
+<table>
+
+<tr>
+<th>Customer</th>
+<th>Total Bill</th>
+<th>Actions</th>
+</tr>
+
+{% for customer in customers %}
+
+<tr>
+
+<td>{{customer.name}}</td>
+
+<td>{{customer.final_bill}}</td>
+
+<td>
+
+<a class="button"
+href="/bill/{{customer.id}}"
+target="_blank">
+
+Print
+
+</a>
+
+<a class="button edit"
+href="/edit/{{customer.id}}">
+
+Edit
+
+</a>
+
+<form action="/delete/{{customer.id}}"
+method="POST"
+style="display:inline;">
+
+<button class="button delete"
+onclick="return confirm('Delete this voucher?')">
+
+Delete
+
+</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+
+<h2>Add Voucher</h2>
+
+<form method="POST" action="/add_voucher">
+
+Name<br>
+<input type="text" name="name" required><br><br>
+
+Date<br>
+<input type="date" name="date" required><br><br>
+
+Total Days<br>
+<input type="number" name="days" required><br><br>
+
+Rate per KG<br>
+<input type="number" name="rate" step="0.01" required><br><br>
+
+Daily Milk<br>
+<input type="number" name="daily" step="0.01" required><br><br>
+
+Extra Milk<br>
+<input type="number" name="extra" step="0.01" required><br><br>
+
+Milk Used<br>
+<input type="number" name="used" step="0.01" required><br><br>
+
+Previous Due<br>
+<input type="number" name="due" step="0.01" required><br><br>
+
+<button class="button">
+Add Voucher
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
