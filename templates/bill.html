@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Bill</title>
 
 <style>
 @font-face {
@@ -20,256 +21,223 @@ body {
 .container {
     width:700px;
     margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    background:#fff;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 0 8px rgba(0,0,0,0.08);
 }
 
-/* Header with centered logo and optional info */
-.invoice-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 20px;
+/* HEADER */
+.header {
+    text-align:center;
 }
 
 .logo {
-    height: 170px;
-    width: auto;
+    height:160px;
 }
 
-.header-info {
-    margin-top: 5px;
-    font-size: 14px;
-    color: #555;
-    line-height: 1.3;
+.title {
+    font-size:22px;
+    font-weight:bold;
+    color:#1f3a5f;
+    margin-top:5px;
 }
 
-.header-tagline {
-    margin-top: 3px;
-    font-size: 13px;
-    color: #777;
+.subtitle {
+    font-size:14px;
+    color:#666;
 }
 
-/* Separator line */
+.contact {
+    font-size:13px;
+    color:#888;
+}
+
 hr {
     border:none;
     border-top:1px solid #ddd;
     margin:15px 0;
 }
 
-/* Table styles */
-table {
-    width:100%;
-    border-collapse:collapse;
-    margin-top:10px;
-}
-
-th, td {
+/* INFO TEXT */
+.notice {
+    background:#f1f5fb;
     padding:10px;
-    border-bottom:1px solid #eee;
-    font-size:15px;
-}
-
-th {
-    text-align:center;
-    color:#1a7f37;
-}
-
-/* Total box */
-.total-box {
-    margin-top:15px;
-    background:#eaf6ea;
-    padding:10px;
-    border-left:5px solid #1a7f37;
     border-radius:6px;
-}
-
-.total-box p {
-    margin:5px 0;
-    font-weight:bold;
-}
-
-.final-bill {
-    font-size:14px;
-    color:#1a7f37;
-}
-
-/* Urdu section */
-.urdu-section {
-    margin-top:20px;
-    padding-top:10px;
-    border-top:1px solid #ddd;
+    margin-bottom:15px;
 }
 
 .urdu {
     font-family:'Noto Nastaliq Urdu', serif;
     direction:rtl;
-    text-align:center;
+    text-align:right;
+    font-size:15px;
     line-height:1.6;
-    font-size:16px;
 }
 
-/* Footer */
+/* TABLE */
+table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td {
+    padding:10px;
+    border-bottom:1px solid #eee;
+}
+
+th {
+    text-align:left;
+    font-size:14px;
+    color:#333;
+    width:50%;
+}
+
+/* TOTAL */
+.total-box {
+    margin-top:15px;
+    padding:10px;
+    background:#f8fafc;
+    border-radius:6px;
+}
+
+.total-box p {
+    margin:5px 0;
+}
+
+.final {
+    font-weight:bold;
+    font-size:16px;
+    color:#1f3a5f;
+}
+
+/* PAYMENT */
+.payment {
+    margin-top:15px;
+    padding:10px;
+    background:#f9fafb;
+    border-radius:6px;
+}
+
+.payment p {
+    margin:5px 0;
+    font-size:14px;
+}
+
+/* FOOTER */
 .footer {
     text-align:center;
-    margin-top:25px;
-    font-size:14px;
+    margin-top:20px;
+    font-size:13px;
     color:#777;
 }
 
-/* Print button */
+/* BUTTON */
 .print-btn {
     display:block;
     margin:15px auto;
     padding:10px 20px;
-    background:#1a7f37;
+    background:#1f3a5f;
     color:white;
     border:none;
     border-radius:5px;
     cursor:pointer;
 }
 
-/* Print-specific adjustments to reduce pages and spacing */
+/* PRINT */
 @media print {
-    body {
-        margin: 0;
-        padding: 10px;
-        line-height: 1.2;
-        font-size: 14px;
-    }
-
-    .container {
-        width: 100%;
-        padding: 20px;
-    }
-
-    table th, table td {
-        padding: 5px 8px;
-        font-size: 14px;
-    }
-
-    .header-info, .header-tagline {
-        line-height: 1.2;
-    }
-
-    .urdu {
-        line-height: 1.1; /* tighter Urdu section spacing */
-        font-size: 15px;
-    }
-
-    .total-box p {
-        margin: 3px 0;
-    }
-
-    .invoice-header {
-        margin-bottom: 10px;
-    }
-
-    .footer {
-        font-size: 12px;
-        margin-top: 20px;
-    }
-
     .print-btn {
-        display: none;
+        display:none;
     }
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<!-- Logo Centered with Professional Info -->
-<div class="invoice-header">
-    <img src="{{ url_for('static', filename='buffalo.png') }}" class="logo" alt="Bin Khalid Dairy Farm Logo">
-    
-    <!-- Farm Name with Color -->
-    <div style="font-size: 20px; font-weight: bold; color: #1a7f37; margin-top: 5px;">
-        BIN KHALID DAIRY FARM
-    </div>
-    
-    <!-- Tagline -->
-    <div class="header-tagline" style="font-size: 14px; color: #555; margin-top: 3px;">
-        Fresh Milk, Happy Customers!
-    </div>
-    
-    <!-- Contact Info -->
-    <div style="font-size: 13px; color: #777; margin-top: 3px;">
-        Contact: 0300-1234567 | Shahdadpur, Sindh
-    </div>
+<!-- HEADER -->
+
+<div class="header">
+    <img src="{{ url_for('static', filename='buffalo.png') }}" class="logo">
+    <div class="title">BIN KHALID DAIRY FARM</div>
+    <div class="subtitle">Fresh Milk, Happy Customers</div>
+    <div class="contact">0300-1234567 | Shahdadpur</div>
 </div>
 
-<button class="print-btn" onclick="window.print()">Print Voucher</button>
+<button class="print-btn" onclick="window.print()">Print Bill</button>
 
 <hr>
 
+<!-- NOTICE -->
+
+<div class="notice">
+    <div class="urdu">
+        محترم صارف! براہِ کرم اپنا بل ہر ماہ کی 5 تاریخ تک جمع کروائیں۔
+    </div>
+</div>
+
+<!-- TABLE -->
+
 <table>
 <tr>
-<th>Customer Name</th>
+<th>Customer Name (گاہک)</th>
 <td>{{ data.name }}</td>
 </tr>
 
 <tr>
-<th>Date</th>
+<th>Date (تاریخ)</th>
 <td>{{ data.date }}</td>
 </tr>
 
 <tr>
-<th>Total Days</th>
+<th>Total Days (کل دن)</th>
 <td>{{ data.days }}</td>
 </tr>
 
 <tr>
-<th>Rate per KG</th>
+<th>Rate per KG (قیمت فی کلو)</th>
 <td>{{ data.rate }} PKR</td>
 </tr>
 
 <tr>
-<th>Daily Milk</th>
+<th>Daily Milk (روزانہ دودھ)</th>
 <td>{{ data.daily }} KG</td>
 </tr>
 
 <tr>
-<th>Extra Milk</th>
+<th>Extra Milk (اضافی دودھ)</th>
 <td>{{ data.extra }} KG</td>
 </tr>
 
 <tr>
-<th>Milk Used</th>
+<th>Milk Used (کم دودھ)</th>
 <td>{{ data.used }} KG</td>
 </tr>
 
 <tr>
-<th>Total Milk</th>
+<th>Total Milk (کل دودھ)</th>
 <td>{{ data.total_milk }} KG</td>
 </tr>
 </table>
 
+<!-- TOTAL -->
+
 <div class="total-box">
-<p>Total Amount: {{ data.amount }} PKR</p>
-<p>Previous Due: {{ data.due }} PKR</p>
-<p class="final-bill">TOTAL BILL: {{ data.final_bill }} PKR</p>
+<p>Total Amount (کل رقم): {{ data.amount }} PKR</p>
+<p>Previous Due (بقایا رقم): {{ data.due }} PKR</p>
+<p class="final">TOTAL BILL (کل بل): {{ data.final_bill }} PKR</p>
 </div>
 
-<div class="urdu-section">
-<div class="urdu">
-<p>گاہک: {{ data.name }}</p>
-<p>تاریخ: {{ data.date }}</p>
-<p>کل دن: {{ data.days }}</p>
-<p>قیمت فی کلو: {{ data.rate }} روپے</p>
-<p>روزانہ دودھ: {{ data.daily }} کلو</p>
-<p>اضافی دودھ: {{ data.extra }} کلو</p>
-<p>کم دودھ گیا: {{ data.used }} کلو</p>
-<p>کل دودھ: {{ data.total_milk }} کلو</p>
-<p>کل رقم: {{ data.amount }} روپے</p>
-<p>بقایا رقم: {{ data.due }} روپے</p>
-<p><b>کل بل: {{ data.final_bill }} روپے</b></p>
-</div>
+<!-- PAYMENT -->
+
+<div class="payment">
+<p><strong>Online Payment:</strong></p>
+<p>Easypaisa: 03242991303</p>
+<p>JazzCash: 03242991303</p>
+<p>Account Title: Muhammad Ibrahim</p>
 </div>
 
 <div class="footer">
