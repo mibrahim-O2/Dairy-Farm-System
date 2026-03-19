@@ -45,6 +45,51 @@ The logo reflects the farm’s identity and is prominently displayed in the dash
 - **Version Control:** Git + GitHub  
 
 ---
+## Usage
+
+1. **Login**:
+
+   * Default credentials for demo purposes:
+
+     ```
+     Username: admin
+     Password: 1234
+     ```
+---
+
+![Login Screen](https://github.com/mibrahim-O2/Dairy-Farm-System/blob/main/login.png)
+---
+2. **Dashboard**:
+
+   * View latest vouchers for all customers.
+   * Search customers by name.
+   * Add, edit, or delete vouchers.
+---
+**Main Dashboard**
+
+![Dashboard](https://github.com/mibrahim-O2/Dairy-Farm-System/blob/main/Screenshot%202026-03-19%20030314.png)
+
+---
+3. **Generate Bill**:
+
+   * Click **Print** to open professional bill in a new tab.
+   * Bills include English and Urdu details, payment info, and totals.
+---
+**Add Voucher Screen**
+
+![Add Voucher](https://github.com/mibrahim-O2/Dairy-Farm-System/blob/main/Screenshot%202026-03-19%20030421.png)
+---
+4. **Sample Bill**
+
+![Bill Preview](https://github.com/mibrahim-O2/Dairy-Farm-System/blob/main/bill.png)
+---
+[📄 Download Full Bill (PDF)](https://raw.githubusercontent.com/mibrahim-O2/Dairy-Farm-System/main/Bill.pdf)
+
+---
+5. **Monthly Report**:
+
+   * Shows total milk collected and total income for the current month.
+---
 
 ## Installation
 
@@ -89,38 +134,6 @@ http://127.0.0.1:5000
 ```
 
 ---
-
-## Usage
-
-1. **Login**:
-
-   * Default credentials for demo purposes:
-
-     ```
-     Username: admin
-     Password: 1234
-     ```
----
-2. **Dashboard**:
-
-   * View latest vouchers for all customers.
-   * Search customers by name.
-   * Add, edit, or delete vouchers.
-**Main Dashboard**
-![Dashboard](https://github.com/mibrahim-O2/Dairy-Farm-System/blob/main/Screenshot%202026-03-19%20030314.png)
-
----
-3. **Generate Bill**:
-
-   * Click **Print** to open professional bill in a new tab.
-   * Bills include English and Urdu details, payment info, and totals.
-
-4. **Monthly Report**:
-
-   * Shows total milk collected and total income for the current month.
-
----
-
 ## Database Structure
 
 **SQLite Database:** `database.db`
@@ -144,21 +157,16 @@ http://127.0.0.1:5000
 
 ---
 
-## Screenshots
+##  Future Improvements
 
-**Main Dashboard**
-![Dashboard](https://github.com/mibrahim-O2/Dairy-Farm-System/blob/main/Screenshot%202026-03-19%20030314.png)
+This project can be enhanced further with:
 
-**Add Voucher Screen**
-![Add Voucher](https://github.com/mibrahim-O2/Dairy-Farm-System/blob/main/Screenshot%202026-03-19%20030421.png)
-
-**Sample Bill**
-
-![Bill Preview](https://github.com/mibrahim-O2/Dairy-Farm-System/blob/main/bill.png)
-
-[📄 Download Full Bill (PDF)](https://raw.githubusercontent.com/mibrahim-O2/Dairy-Farm-System/main/Bill.pdf)
-
----
+- 👥 Multi-user authentication system  
+- 📱 Mobile responsive UI design  
+- ☁️ Cloud database (PostgreSQL / MySQL)  
+- 📊 Advanced analytics & charts  
+- 🧾 PDF download instead of print-only bills  
+- 🔔 SMS/WhatsApp payment reminders  
 ---
 
 ## 👨‍💻 About the Developer
